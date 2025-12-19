@@ -41,6 +41,12 @@
 
 ## 🚀 Installation
 
+Environment: Tested in a docker `php:8.2-fpm` image
+```bash
+docker run --name locality-test -p 8000:8000 php:8.2-fpm
+docker exec -it locality-test /bin/bash
+```
+
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/califorliu/locality.git
@@ -115,7 +121,7 @@ php artisan db:seed --class=PostJourneySeeder
 ```bash
 php artisan serve
 
-# If using docker get ERR_EMPTY_RESPONSE error, change port to your exposed
+# If using docker get ERR_EMPTY_RESPONSE error (change port to your exposed)
 php artisan serve --host=0.0.0.0 --port=8000
 ```
 
