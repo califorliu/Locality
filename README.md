@@ -2,6 +2,8 @@
 
 **Locality** is a web platform that connects travelers and locals around the world, acting as a digital "local friend" in any destination. The application allows users to share and discover real-world experiences through photos and comments pinned to an interactive map.
 
+[toc]
+
 ## 🌟 Features
 
 ### Core Functionalities
@@ -53,21 +55,21 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === 'c8b085408188070d5f52b
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 
+# Add composer to path (optional)
+mv composer.phar /usr/local/bin/composer
+
 # Install PHP dependencies
 composer install
 
-# Install zip/unzip if error occured like
+# Install zip/unzip if error occured: 
 # Failed to download doctrine/lexer from dist: The zip extension and unzip/7z commands are both missing, skipping.
 apt-get install zip -y
 apt-get install unzip -y
-
-# Install Node.js dependencies
-npm install
 ```
 
 ### 3. Environment Setup
 ```bash
-# Copy environment file
+# Copy environment file, modify if needed
 cp .env.example .env
 
 # Generate application key
@@ -85,6 +87,7 @@ touch database/database.sqlite
 **Option B: MySQL/PostgreSQL**
 Edit `.env` file:
 ```env
+# Example
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -98,26 +101,22 @@ DB_PASSWORD=your_password
 php artisan migrate
 ```
 
-### 6. Seed Database (Optional - for demo data)
-```bash
-php artisan db:seed --class=PostJourneySeeder
-```
-
-### 7. Create Storage Link
+### 6. Create Storage Link
 ```bash
 php artisan storage:link
 ```
 
-### 8. Build Frontend Assets
+### 7. Seed Database (Optional - for demo data)
 ```bash
-npm run build
-# Or for development with hot reload:
-npm run dev
+php artisan db:seed --class=PostJourneySeeder
 ```
 
-### 9. Start Development Server
+### 8. Start Development Server
 ```bash
 php artisan serve
+
+# If using docker get ERR_EMPTY_RESPONSE error, change port to your exposed
+php artisan serve --host=0.0.0.0 --port=8000
 ```
 
 Visit `http://localhost:8000` in your browser.
@@ -140,6 +139,12 @@ All migrations are in `database/migrations/`. Run migrations with:
 ```bash
 php artisan migrate
 ```
+
+### Using SQLite (Current Test Environment)
+The default database configuration uses SQLite, which is perfect for testing:
+- No database server setup required
+- Fast and lightweight
+- Easy to reset: delete `database/database.sqlite` and run migrations again
 
 ## 📁 Project Structure
 
@@ -192,19 +197,6 @@ No API key required for OpenStreetMap.
 - Soft deletes for data retention
 - Input validation on all forms
 
-## 📝 Testing
-
-### Using SQLite (Current Test Environment)
-The default database configuration uses SQLite, which is perfect for testing:
-- No database server setup required
-- Fast and lightweight
-- Easy to reset: delete `database/database.sqlite` and run migrations again
-
-### Run Tests
-```bash
-php artisan test
-```
-
 ## 🚢 Deployment
 
 ### Production Checklist
@@ -226,21 +218,13 @@ DB_CONNECTION=mysql
 # ... other production settings
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## 📄 License
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [Apache-2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## 👤 Author
 
-Your Name - [Your GitHub](https://github.com/yourusername)
+Michael Liu - [califorliu](https://github.com/califorliu)
 
 ## 🙏 Acknowledgments
 

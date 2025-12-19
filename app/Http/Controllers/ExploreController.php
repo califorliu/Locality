@@ -9,7 +9,7 @@ class ExploreController extends Controller
 {
     public function index()
     {
-        $posts = Post::recent()->with('user')->paginate(12);
+        $posts = Post::recent()->with('user')->simplePaginate(12);
         return view('explore.index', compact('posts'));
     }
 
@@ -28,7 +28,7 @@ class ExploreController extends Controller
             $query->where('category', $category);
         }
 
-        $posts = $query->recent()->paginate(12);
+        $posts = $query->recent()->simplePaginate(12);
 
         return view('explore.search', [
             'posts' => $posts,

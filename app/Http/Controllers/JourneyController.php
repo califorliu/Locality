@@ -21,7 +21,7 @@ class JourneyController extends Controller
         $journeys = Journey::with('user')
             ->where('visibility', 'public')
             ->latest()
-            ->paginate(12);
+            ->simplePaginate(12);
 
         return view('journeys.index', compact('journeys'));
     }
