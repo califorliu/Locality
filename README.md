@@ -41,14 +41,25 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/locality.git
-cd locality/locality-php
+git clone https://github.com/califorliu/locality.git
+cd locality
 ```
 
 ### 2. Install Dependencies
 ```bash
+# Install composer if not exist
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'c8b085408188070d5f52bcfe4ecfbee5f727afa458b2573b8eaaf77b3419b0bf2768dc67c86944da1544f06fa544fd47') { echo 'Installer verified'.PHP_EOL; } else { echo 'Installer corrupt'.PHP_EOL; unlink('composer-setup.php'); exit(1); }"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+
 # Install PHP dependencies
 composer install
+
+# Install zip/unzip if error occured like
+# Failed to download doctrine/lexer from dist: The zip extension and unzip/7z commands are both missing, skipping.
+apt-get install zip -y
+apt-get install unzip -y
 
 # Install Node.js dependencies
 npm install
